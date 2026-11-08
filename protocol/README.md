@@ -24,7 +24,7 @@ and no live token, client routes are open.
 | `GET /api/client/hello` | `{ "protocol": N }` |
 | `POST /api/client/enroll` `{ "code" }` | `{ "token", "name" }`, with no token; 401 for an unknown, used or expired code |
 | `GET /api/client/ws` | the WebSocket, below |
-| `GET /api/client/rules?machine=<name>` | this machine's session rules, with an `ETag`; `304` for a matching `If-None-Match` |
+| `GET /api/client/rules?machine=<name>` | this machine's instructions, with an `ETag`; `304` for a matching `If-None-Match` |
 | `GET /install?code=<code>` | the bundled `install.sh`, its `HUBD_URL=''` and `CODE=''` lines filled in |
 | `GET /install/checksums.txt` | `<sha256>  <name>`, one line per binary |
 | `GET /install/manifest.json`, `GET /install/manifest.json.sig` | the bundled release's manifest and signature |
@@ -47,15 +47,15 @@ Close codes: 4000 refused, 4001 a message before `hello`, 4002 not JSON, 4003 to
 machine removed, 1011 server error.
 
 Commands: `rotate { token }` writes the token atomically, reads it back, answers `result`,
-then reconnects with it. `sync {}` fetches the session rules again, writes them, then answers
+then reconnects with it. `sync {}` fetches the instructions again, writes them, then answers
 `result`. `restore` is reserved.
 
-## Session rules
+## Instructions
 
-`GET /api/client/rules` answers `{ "builtins": { "estate", "secrets", "git" }, "files": [{ "name",
-"body" }] }`. A built-in is on unless its key is `false`; its text ships with the client. Each
-file is Markdown, named `^[a-z0-9][a-z0-9-]*\.md$`. The client writes the built-ins that are on
-and the files to `<Claude config dir>/rules/hubd/`, and removes only files it wrote. It fetches
-on start, after every `welcome` and on `sync`; hubd sends `sync` when a pin, its scope or order,
-a built-in's switch, or a pinned claim changes. A `404` means hubd predates the route: all
-built-ins on, no files.
+`GET /api/client/rules?machine=<name>` answers `{ "files": [{ "name", "body" }] }`: the operator's
+instructions for that machine, each Markdown file named `^[a-z0-9][a-z0-9-]*\.md$`, with an `ETag`.
+The client writes them to `<Claude config dir>/rules/hubd/`, removes only files it wrote, keeps
+each body in its own state so it can write them back offline on start, and retries a failed fetch
+with backoff. It fetches after every `welcome` and on `sync`; hubd sends `sync` when an
+instruction, its switch, machines or order, or a claim one loads changes. A `404` is an error:
+the files stay. A `builtins` key, if present, is ignored.
