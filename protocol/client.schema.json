@@ -246,7 +246,7 @@
             "type": "string",
             "pattern": "^[a-z0-9][a-z0-9.-]{0,39}$"
           },
-          "description": "The topics of the estate claims the session read or edited, those of the most claims first."
+          "description": "Ignored: hubd derives a session's topics from the estate files it read through hubd's MCP."
         },
         "continuedIn": {
           "type": "string",
