@@ -1,5 +1,5 @@
 # KloudKIT • hubd
 
-> 🧭 The server and visual layer for Claude Code sessions, todos and estate
+> 🛰️ Your mission control hub
 
 Coming soon.
