@@ -81,7 +81,8 @@
         },
         "channel": {
           "type": "string",
-          "pattern": "^(bundled|latest|v[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?)$"
+          "pattern": "^(bundled|latest|v[0-9]+\\.[0-9]+\\.[0-9]+(-[0-9A-Za-z.-]+)?)$",
+          "description": "Where the client takes its updates from: bundled (hubd's /install), latest, or a release tag."
         }
       },
       "required": [
@@ -159,7 +160,8 @@
         },
         "excerpt": {
           "type": "string",
-          "maxLength": 200
+          "maxLength": 200,
+          "description": "At most 200 characters, already masked."
         },
         "state": {
           "enum": [
@@ -188,10 +190,11 @@
           "type": "array",
           "items": {
             "$ref": "#/$defs/dayTokens"
-          }
+          },
+          "description": "The session's full total per UTC day, not a delta."
         },
         "hours": {
-          "description": "Per-UTC-hour totals for the last 48 hours, non-zero hours only.",
+          "description": "Per-UTC-hour totals for the last 48 hours, non-zero hours only; replaces the stored hours, and leaving it out means none.",
           "type": "array",
           "items": {
             "$ref": "#/$defs/hourTokens"
@@ -395,7 +398,8 @@
             "type": "string",
             "minLength": 1
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "description": "Sessions whose claude process runs, or background sessions working, blocked or done with their process retired."
         },
         "present": {
           "type": "array",
@@ -403,7 +407,8 @@
             "type": "string",
             "minLength": 1
           },
-          "uniqueItems": true
+          "uniqueItems": true,
+          "description": "Sessions whose transcript and folder exist on this machine."
         }
       },
       "required": [
@@ -618,7 +623,8 @@
         "utilization": {
           "type": "number",
           "minimum": 0,
-          "maximum": 2
+          "maximum": 2,
+          "description": "A fraction: 1 is the limit."
         },
         "resetsAt": {
           "$ref": "#/$defs/iso"
