@@ -151,10 +151,6 @@
             }
           ]
         },
-        "repo": {
-          "type": "string",
-          "description": "Deprecated name of root, still read as root for daemons from before the change."
-        },
         "title": {
           "type": "string"
         },
@@ -297,6 +293,7 @@
       "required": [
         "id",
         "folder",
+        "root",
         "title",
         "excerpt",
         "state",
@@ -306,19 +303,7 @@
         "tokens",
         "todoWrites"
       ],
-      "additionalProperties": false,
-      "anyOf": [
-        {
-          "required": [
-            "root"
-          ]
-        },
-        {
-          "required": [
-            "repo"
-          ]
-        }
-      ]
+      "additionalProperties": false
     },
     "dayTokens": {
       "type": "object",
