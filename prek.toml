@@ -1,0 +1,31 @@
+exclude = "^(brand/|.*/migrations/meta/)"
+
+[[repos]]
+repo = "https://github.com/pre-commit/pre-commit-hooks"
+rev = "v6.0.0"
+hooks = [
+  { id = "check-added-large-files", args = ["--maxkb=300"] },
+  { id = "check-yaml", args = ["--allow-multiple-documents"] },
+  { id = "check-toml" },
+  { id = "end-of-file-fixer" },
+  { id = "mixed-line-ending" },
+  { id = "trailing-whitespace" },
+]
+
+[[repos]]
+repo = "local"
+
+[[repos.hooks]]
+id = "biome"
+name = "biome"
+language = "system"
+entry = "pnpm exec biome check --no-errors-on-unmatched --files-ignore-unknown=true"
+files = "\\.(ts|js|json)$"
+
+[[repos.hooks]]
+id = "typecheck"
+name = "typecheck"
+language = "system"
+entry = "pnpm typecheck"
+files = "\\.ts$"
+pass_filenames = false

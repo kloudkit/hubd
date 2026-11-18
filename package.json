@@ -1,0 +1,29 @@
+{
+  "name": "hubd",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @hubd/server dev",
+    "migrate": "pnpm --filter @hubd/server migrate",
+    "generate": "pnpm -r --if-present generate",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "vitest run",
+    "knip": "knip",
+    "coverage": "vitest run --coverage",
+    "inspect": "npx @modelcontextprotocol/inspector@2.15.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.8",
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "^5.1.0",
+    "knip": "^6.45.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}

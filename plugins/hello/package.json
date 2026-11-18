@@ -1,0 +1,21 @@
+{
+  "name": "@hubd/plugin-hello",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./server/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@hubd/sdk": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "drizzle-zod": "^0.8.3",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "drizzle-kit": "catalog:"
+  }
+}

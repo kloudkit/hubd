@@ -1,0 +1,79 @@
+@import "@fontsource-variable/manrope";
+
+@theme static {
+  --font-sans: "Manrope Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-page: #c9cfdc;
+  --color-shell: #eceef2;
+  --color-card: #ffffff;
+  --color-sunken: #e3e6ec;
+  --color-ink: #161a24;
+  --color-ink-2: #545a6a;
+  --color-ink-3: #8a90a0;
+  --color-hair: #dfe2e8;
+  --color-accent: #e8552b;
+  --color-accent-soft: #fde7df;
+  --color-on-ink: #ffffff;
+  --shadow-card: 0 0 0 1px rgb(22 26 36 / 0.04), 0 1px 2px rgb(22 26 36 / 0.04), 0 8px 24px -6px rgb(22 26 36 / 0.08);
+  --shadow-lift: 0 0 0 1px rgb(22 26 36 / 0.05), 0 2px 4px rgb(22 26 36 / 0.05), 0 18px 40px -10px rgb(22 26 36 / 0.16);
+  --shadow-shell: 0 30px 80px -20px rgb(40 50 80 / 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #0b0d12;
+    --color-shell: #161a24;
+    --color-card: #1f2430;
+    --color-sunken: #12151c;
+    --color-ink: #eceef2;
+    --color-ink-2: #b4b9c6;
+    --color-ink-3: #7d8394;
+    --color-hair: #2a2f3c;
+    --color-accent-soft: #3a2218;
+    --color-on-ink: #161a24;
+    --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.05), 0 8px 24px -6px rgb(0 0 0 / 0.5);
+    --shadow-lift: 0 0 0 1px rgb(255 255 255 / 0.06), 0 18px 40px -10px rgb(0 0 0 / 0.6);
+    --shadow-shell: 0 30px 80px -20px rgb(0 0 0 / 0.7);
+    color-scheme: dark;
+  }
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+.press {
+  transition-property: scale, background-color, box-shadow, color, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
+}
+
+.press:active:not(:disabled) {
+  scale: 0.96;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .press {
+    transition: none;
+  }
+}

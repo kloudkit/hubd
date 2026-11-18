@@ -1,0 +1,20 @@
+{
+  "name": "@hubd/plugin-estate",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./server/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@hubd/sdk": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "drizzle-kit": "catalog:"
+  }
+}
