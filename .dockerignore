@@ -1,0 +1,17 @@
+**/node_modules
+**/coverage
+.git
+.github
+.env
+.env.*
+!.env.example
+brand
+protocol
+**/*.test.ts
+**/drizzle.config.ts
+biome.json
+knip.json
+prek.toml
+renovate.json
+vitest.config.ts
+Dockerfile

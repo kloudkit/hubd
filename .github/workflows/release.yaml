@@ -1,0 +1,47 @@
+---
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  test:
+    name: 🧪 Test
+    uses: ./.github/workflows/ci.yaml
+
+  build:
+    name: 🐳 Docker Build
+    needs:
+      - test
+
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+
+    uses: docker/github-builder/.github/workflows/build.yml@v1.18.1
+    with:
+      output: image
+      push: true
+      platforms: linux/amd64,linux/arm64
+      fail-fast: true
+      cache: true
+      cache-mode: max
+      set-meta-labels: true
+      meta-images: ghcr.io/${{ github.repository }}
+      meta-flavor: |
+        latest=false
+      meta-tags: |
+        type=raw,value=latest
+        type=semver,pattern=v{{version}}
+        type=semver,pattern=v{{major}}.{{minor}}
+    secrets:
+      registry-auths: |
+        - registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        - registry: dhi.io
+          username: ${{ secrets.TOKEN__DOCKER_DHI__USERNAME }}
+          password: ${{ secrets.TOKEN__DOCKER_DHI }}

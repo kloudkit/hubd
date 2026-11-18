@@ -1,0 +1,28 @@
+{
+  "name": "@hubd/server",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "hubd": "./src/cli.ts"
+  },
+  "scripts": {
+    "dev": "node --watch --env-file-if-exists=../../.env src/cli.ts serve",
+    "start": "node --env-file-if-exists=../../.env src/cli.ts serve",
+    "migrate": "node --env-file-if-exists=../../.env src/cli.ts migrate",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@hubd/core": "workspace:*",
+    "@hubd/plugin-estate": "workspace:*",
+    "@hubd/plugin-hello": "workspace:*",
+    "@hubd/plugin-todos": "workspace:*",
+    "@hubd/sdk": "workspace:*",
+    "commander": "^15.1.0"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "catalog:",
+    "@testcontainers/postgresql": "^12.2.1",
+    "drizzle-orm": "catalog:",
+    "oauth2-mock-server": "^8.2.3"
+  }
+}

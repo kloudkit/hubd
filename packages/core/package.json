@@ -1,0 +1,32 @@
+{
+  "name": "@hubd/core",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "generate": "drizzle-kit generate"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1170.0",
+    "@hono/node-server": "^2.1.8",
+    "@hubd/sdk": "workspace:*",
+    "@modelcontextprotocol/sdk": "catalog:",
+    "drizzle-orm": "catalog:",
+    "file-type": "^21.3.4",
+    "hono": "^4.13.19",
+    "jose": "^6.2.17",
+    "openid-client": "^6.9.0",
+    "pg-boss": "^12.38.2",
+    "pino": "^10.4.0",
+    "pino-pretty": "^13.2.0",
+    "postgres": "^4.1.1",
+    "yaml": "^2.9.1",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "drizzle-kit": "catalog:"
+  }
+}

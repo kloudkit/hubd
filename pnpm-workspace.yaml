@@ -1,0 +1,15 @@
+packages:
+  - packages/*
+  - plugins/*
+
+catalog:
+  zod: ^4.6.7
+  drizzle-orm: ^0.45.4
+  drizzle-kit: ^0.31.11
+  "@modelcontextprotocol/sdk": ^1.32.2
+
+allowBuilds:
+  esbuild: true
+  cpu-features: false
+  protobufjs: false
+  ssh2: false
